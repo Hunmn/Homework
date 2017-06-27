@@ -1,5 +1,17 @@
 import time
 import random
+from time import sleep
+
+a='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789'
+c = random.choice(a)
+
+def password(n):
+    yield ''.join(random.choice(a) for i in range(n))
+
+gen = password(int(input('Количество символов: ')))
+
+print(next(gen))
+
 
 
 def pause(n):
@@ -12,15 +24,9 @@ def pause(n):
     return decorator
 
 
-a='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789'
-c = random.choice(a)
+@pause(3)
+def password_sleep(n):
+    return ''.join(random.choice(a) for i in range(n))
 
-
-@pause(int(input('Зедержка: ')))
-def password(n):
-    yield ''.join(random.choice(a) for i in range(n))
-
-gen = password(int(input('Количество символов: ')))
-print('Пароль: {}'.format(next(gen)))
-
+print(password_sleep(10))
 
